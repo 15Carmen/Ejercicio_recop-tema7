@@ -103,12 +103,17 @@ public class Cubo {
         }else if (capcidadMaxima>contenido){
             System.out.println("El cubo puede llenarse más");
         }else if (capcidadMaxima<contenido){
+
             System.out.println("El agua ha rebosado del cubo :(");
         }
 
     }
 
-    //metodo para vaciar el cubo
+    /**
+     * método que comprueba que el contenido actual no será negativo y si no lo es, restará la cantidad de litros que se indique
+     * precondición: cantidad tiene que ser > 0, contenido tiene que ser >= 0
+     * @param cantidad
+     */
 
     public void vaciarCubo (int cantidad){
 
@@ -120,7 +125,12 @@ public class Cubo {
 
     }
 
-    //metodo para volcar agua de un cubo a otro
+    /**
+     * método que pasa los litros que tiene un cubo a otro cubo
+     *
+     * @param cantidadVolcar
+     * @param cubo
+     */
 
     public void volcarContenido (int cantidadVolcar, Cubo cubo){
 
