@@ -8,7 +8,7 @@ public class Cubo {
     boolean asa;
     double contenido, capcidadMaxima;
 
-    //constructor sin parametros
+    //constructor sin parametros (o por defecto)
 
     public Cubo(){
 
@@ -42,7 +42,7 @@ public class Cubo {
         return color;
     }
 
-    public boolean getAsa(){
+    public boolean isAsa(){
         return asa;
     }
 
@@ -82,22 +82,28 @@ public class Cubo {
 
         this.material = cubo.getMaterial();
         this.color = cubo.getColor();
-        this.asa = cubo.getAsa();
+        this.asa = cubo.isAsa();
         this.contenido = cubo.getContenido();
         this.capcidadMaxima = cubo.getCapcidadMaxima();
 
     }
 
-    //metodo para llenar el cubo
+    /**
+     * método que comprueba que el contenido actual no será mayor a capacidadMaxima y si no lo es, sumará la cantidad de litros recibidos
+     * precondición: litro tiene que ser > 0
+     * @param litro
+     */
 
-    public void llenarCubo (){
+    public void llenarCubo(int litro){
 
-        contenido+=capcidadMaxima;
+        contenido += litro;
 
         if (capcidadMaxima==contenido){
             System.out.println("El cubo está lleno a su máxima capacidad");
         }else if (capcidadMaxima>contenido){
             System.out.println("El cubo puede llenarse más");
+        }else if (capcidadMaxima<contenido){
+            System.out.println("El agua ha rebosado del cubo :(");
         }
 
     }
