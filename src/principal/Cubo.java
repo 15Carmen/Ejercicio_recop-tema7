@@ -89,61 +89,76 @@ public class Cubo {
     }
 
     /**
-     * método que comprueba que el contenido actual no será mayor a capacidadMaxima y si no lo es, sumará la cantidad de litros recibidos
+     * método que devolverá un 0 si la operación se ha completado sin problemas o devolverá la cantidad de litros sobrentes
+     *  si
      * precondición: litro tiene que ser > 0
-     * @param litro
+     * @param litros
      */
 
-    public void llenarCubo(int litro){
+    public double llenarCubo(double litros){
 
-        contenido += litro;
+        double resultado = 0;
 
-        if (capcidadMaxima==contenido){
-            System.out.println("El cubo está lleno a su máxima capacidad");
-        }else if (capcidadMaxima>contenido){
-            System.out.println("El cubo puede llenarse más");
-        }else if (capcidadMaxima<contenido){
+        if (litros > capcidadMaxima - contenido){
+            this.llenarCubo();
+            resultado = litros-this.capcidadMaxima;
 
-            System.out.println("El agua ha rebosado del cubo :(");
-        }
-
-    }
-
-    /**
-     * método que comprueba que el contenido actual no será negativo y si no lo es, restará la cantidad de litros que se indique
-     * precondición: cantidad tiene que ser > 0, contenido tiene que ser >= 0
-     * @param cantidad
-     */
-
-    public void vaciarCubo (int cantidad){
-
-        contenido-=cantidad;
-
-        if (contenido == 0) {
-            System.out.println("El cubo está vacío");
-        }
-
-    }
-
-    /**
-     * método que pasa los litros que tiene un cubo a otro cubo
-     *
-     * @param cantidadVolcar
-     * @param cubo
-     */
-
-    public void volcarContenido (int cantidadVolcar, Cubo cubo){
-
-        cubo.contenido+=cantidadVolcar;
-        this.contenido-=cantidadVolcar;
-
-        if (capcidadMaxima < cubo.contenido){
-            System.out.println("El agua del cubo ha rebosado");
         }else{
-
+            this.contenido = contenido + litros;
+            resultado = 0;
         }
 
+        return resultado;
+    }
+
+    public void llenarCubo (){
+        this.capcidadMaxima = this.contenido;
+    }
+
+    public void vaciarCubo (){
+        this.contenido = 0;
+    }
+
+    /**
+     * método que vacía el cubo comprobando que la cantidad de litros es menor o igual a la cantidad aque tiene el cubo en ese momento
+     * precondición: cantidad de litros tiene que ser > 0, contenido tiene que ser >= 0
+     * @param litros
+     */
+
+    public void vaciarCubo (int litros){
+
+        if (litros < capcidadMaxima) {
+            this.contenido = this.contenido - litros;
+        }else{
+            System.out.println("La cantidad de litros no es válida");
+        }
+
+    }
+
+    /**
+     * método que vuelca la cantidad de litros del cubo origen al cubo destino
+     * comprueba la capacidad del cubo destino, en caso de que no quepa la cantidad del cubo origen el cubo destino se llenará
+     *  hasta su capacidad máxima
+     * precondicion:
+     * @param cuboDestino
+     */
+
+    //
+
+    public void volcarCubo (Cubo cuboDestino){
+
+        double resultado;
+
+        resultado = cuboDestino.llenarCubo(this.contenido);
+        if (resultado == 0){ //Esto significa que todo ha ido bien y que por lo tanto todo el cubo origen se ha vaciado en el cubo destino
+            this.vaciarCubo();
+        }else{
+            this.vaciarCubo();
+            this.llenarCubo(resultado);
+        }
     }
 
     //metodo para dibujar cubo
+
+
 }

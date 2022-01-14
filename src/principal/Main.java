@@ -12,6 +12,8 @@ public class Main {
             cubo1.llenarCubo(40);
             System.out.println("Ahora el cubo tendría: " + cubo1.getContenido() + "l");
 
+            cubo1.volcarCubo(cubo2);
+
 
 
     }
