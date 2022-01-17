@@ -7,6 +7,7 @@ public class Cubo {
     String material, color;
     boolean asa;
     double contenido, capcidadMaxima;
+    private int lado;
 
     //constructor sin parametros (o por defecto)
 
@@ -17,18 +18,21 @@ public class Cubo {
         this.color = "negro";
         this.capcidadMaxima = 10;
         this.contenido = 0;
+        this.lado = 9;
 
     }
 
     //constructor con parámetros
 
-    public Cubo (String material, String color, boolean asa, double contenido, double capcidadMaxima){
+    public Cubo (String material, String color, boolean asa, double contenido, double capcidadMaxima, int lado){
 
         this.material = material;
         this.color = color;
         this.asa = asa;
         this.contenido = contenido;
         this.capcidadMaxima = capcidadMaxima;
+        this.lado=lado;
+
 
     }
 
@@ -54,6 +58,10 @@ public class Cubo {
         return capcidadMaxima;
     }
 
+    public int getLado(){
+        return lado;
+    }
+
     //hacemos los setter
 
     public void setMaterial (String material){
@@ -76,6 +84,10 @@ public class Cubo {
         this.capcidadMaxima = capcidadMaxima;
     }
 
+    public void setLado (int lado){
+        this.lado = lado;
+    }
+
     //constructor copia
 
     public Cubo (Cubo cubo){
@@ -85,6 +97,7 @@ public class Cubo {
         this.asa = cubo.isAsa();
         this.contenido = cubo.getContenido();
         this.capcidadMaxima = cubo.getCapcidadMaxima();
+        this.lado = cubo.getLado();
 
     }
 
@@ -160,5 +173,32 @@ public class Cubo {
 
     //metodo para dibujar cubo
 
+    public String toString() {
 
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(System.lineSeparator());
+
+        //pintamos los lados, primero un asteriscos, luego los blancos y al final otro asterisco con el salto de linea
+
+        for (int i=1; i< this.lado-1; i++) {
+            stringBuilder.append("* ");
+            for (int j = 1; j < this.lado - 1; j++) {
+                stringBuilder.append("  ");
+            }
+            stringBuilder.append("*");
+            stringBuilder.append(System.lineSeparator());
+        }
+
+        //pintamos el ultimo lado del cuadrado
+
+        for (int j = 0; j < this.lado; j++) {
+            stringBuilder.append("* ");
+        }
+        stringBuilder.append(System.lineSeparator());
+
+        return stringBuilder.toString();
+
+    }
 }
+

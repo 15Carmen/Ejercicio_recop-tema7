@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Cubo cubo1 = new Cubo("plástico", "azul", true, 20, 50);
+        Cubo cubo1 = new Cubo("plástico", "azul", true, 20, 50, 5);
         Cubo cubo2 = new Cubo();
         cubo2.setMaterial("metal");
 
@@ -13,6 +13,10 @@ public class Main {
             System.out.println("Ahora el cubo tendría: " + cubo1.getContenido() + "l");
 
             cubo1.volcarCubo(cubo2);
+
+            cubo1.toString();
+            System.out.print(cubo1);
+
 
 
 
